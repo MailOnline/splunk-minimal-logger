@@ -1,0 +1,23 @@
+{
+  "name": "splunk-minimal-logger",
+  "version": "0.0.4",
+  "description": "splunk minimal logger, logs through tcp without forwarder",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/szilveszter9/splunk-minimal-logger.git"
+  },
+  "keywords": [
+    "splunk",
+    "logger"
+  ],
+  "author": "Szilveszter Szilagyi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/szilveszter9/splunk-minimal-logger/issues"
+  },
+  "homepage": "https://github.com/szilveszter9/splunk-minimal-logger"
+}
