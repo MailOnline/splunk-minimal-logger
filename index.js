@@ -12,9 +12,8 @@ module.exports = function Splunk(config){
         },
         log: function(obj){
             console.log('-------------------SPLUNK MESSAGE-------------------');
-            var msg = (new Date()).toISOString() + ' ' + config.namespace;
+            var msg = 'ts=' + (new Date()).toISOString() + ' ' + config.namespace;
             delete obj.contextConfig;
-            obj.timestamp = (new Date()).toISOString();
             for(var key in obj){
                 if(obj.hasOwnProperty([key])) {
                     var value = obj[key];
