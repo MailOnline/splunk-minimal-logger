@@ -1,3 +1,4 @@
 # Splunk minimal logger
 
-Logs directly through tcp without a splunk forwarder.
+Logs directly to standard out.
+Should be ended in a log file and a picked up by a forwarder.

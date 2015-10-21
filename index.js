@@ -1,11 +1,10 @@
 "use strict";
 
-var net = require('net'),
-    uuid = require('node-uuid');
+var uuid = require('node-uuid');
 
 
 module.exports = function Splunk(config){
-    // { host: 'some.host', port: 1234, namespace: 'ns=something' }
+    // config -> { namespace: 'ns=something' }
 
     return {
         txid: function(){
@@ -15,12 +14,14 @@ module.exports = function Splunk(config){
             console.log('-------------------SPLUNK MESSAGE-------------------');
             var msg = (new Date()).toISOString() + ' ' + config.namespace;
             delete obj.contextConfig;
+            obj.timestamp = (new Date()).toISOString();
             for(var key in obj){
                 if(obj.hasOwnProperty([key])) {
                     var value = obj[key];
-                    if(typeof value != 'object' || value === null){
+                    if(value === null || value === undefined) continue;
+                    if(typeof value != 'object'){
                         value = '' + value;
-                        value = value.replace(' ', '_').replace(/\n|\r/g, ' ');
+                        value = value.replace(/\n|\r/g, ' ');
                     }
                     else {
                         try {
@@ -29,18 +30,13 @@ module.exports = function Splunk(config){
                             value = 'some recursive object';
                         }
                     }
-                    if(/ /.test(value))
+                    if(/[ "]/.test(value))
                         value = '"' + value.replace(/"/g, '\\"') + '"';
                     msg += ' ' + key + '=' + value;
                 }
             }
-            console.log(msg);
             try{
-                var client = new net.Socket();
-                client.connect(config.port, config.host, function() {
-                    client.write(msg);
-                    client.destroy();
-                });
+                console.log('METRIC ' + msg);
             } catch(e){
                 console.log('error', e);
             }
