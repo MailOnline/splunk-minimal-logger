@@ -1,6 +1,6 @@
 {
   "name": "splunk-minimal-logger",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "splunk minimal logger, logs through tcp without forwarder",
   "main": "index.js",
   "scripts": {
@@ -21,6 +21,6 @@
   },
   "homepage": "https://github.com/szilveszter9/splunk-minimal-logger",
   "dependencies": {
-    "uuid": "^2.0.1"
+    "node-uuid": "^1.4.3"
   }
 }
