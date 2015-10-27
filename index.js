@@ -11,7 +11,6 @@ module.exports = function Splunk(config){
             return uuid.v4();
         },
         log: function(obj){
-            console.log('-------------------SPLUNK MESSAGE-------------------');
             var msg = 'ts=' + (new Date()).toISOString() + ' ' + config.namespace + ' env=' + process.env.NODE_ENV;
             delete obj.contextConfig;
             for(var key in obj){
