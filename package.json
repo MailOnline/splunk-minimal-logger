@@ -1,6 +1,6 @@
 {
   "name": "splunk-minimal-logger",
-  "version": "1.0.5",
+  "version": "2.0.0",
   "description": "splunk minimal logger, logs through tcp without forwarder",
   "main": "index.js",
   "scripts": {

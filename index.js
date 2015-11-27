@@ -4,14 +4,16 @@ var uuid = require('node-uuid');
 
 
 module.exports = function Splunk(config){
-    // config -> { namespace: 'ns=something' }
+    // config -> { namespace: 'something', timestamp: true }
 
     return {
         txid: function(){
             return uuid.v4();
         },
         log: function(obj){
-            var msg = 'ts=' + (new Date()).toISOString() + ' ' + config.namespace + ' env=' + process.env.NODE_ENV;
+            var msg = config.timestamp ? 'ts=' + (new Date()).toISOString() + ' ': '';
+            msg += config.namespace ? 'ns=' + config.namespace + ' ' : '';
+            msg += 'env=' + process.env.NODE_ENV;
             delete obj.contextConfig;
             for(var key in obj){
                 if(obj.hasOwnProperty([key])) {
